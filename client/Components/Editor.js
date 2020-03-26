@@ -25,6 +25,7 @@ const Editor = props => {
         }}
       />
       <button onClick={() => props.runCode(props.code)}>Run Code</button>
+      <button onClick={() => props.saveCode()}>Save Code</button>
       <Console output={props.consoleOutput} />
     </div>
   );

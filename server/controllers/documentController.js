@@ -4,8 +4,9 @@ const documentController = {}
 
 // check the user's ID and save a new document in the database that has a doc_id that matches the user's _id
 documentController.saveDoc = (req, res, next) => {
-    const { username, docName, docText } = req.body;
-    const queryArr1 = [username,docName, docText];
+    const { docName, docText } = req.body;
+    console.log(docName, docText)
+    const queryArr1 = ['duygu',docName, docText];
     const queryString = "INSERT into documents (doc_name, doc_text, doc_id) VALUES ($2, $3, (SELECT _id FROM users WHERE username = $1))"
     console.log('DOC CONTROLLER SAVE DOC FIRED')
     db.query(queryString, queryArr1, (err, data) => {

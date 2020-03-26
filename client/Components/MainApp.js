@@ -24,6 +24,7 @@ class MainApp extends Component {
     this.updateCodeinState = this.updateCodeinState.bind(this);
     this.updateCodeFromSockets = this.updateCodeFromSockets.bind(this);
     this.updateCodeFromDocs = this.updateCodeFromDocs.bind(this);
+    this.saveCodeToDatabase = this.saveCodeToDatabase.bind(this);
   }
 
    // Emits 'room' event, sending this.state.room to the socket in the server when component mounts
@@ -53,6 +54,22 @@ class MainApp extends Component {
     this.setState({code: docText})
   }
 
+  // Saves code to documents table in db
+  saveCodeToDatabase() {
+    // req.body should have doc_text and doc_name
+    const data = {
+      docName: 'test', 
+      docText: this.state.code
+    }
+    fetch('/save', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+  }
+
 	render(){
   return (
     <div>
@@ -64,7 +81,8 @@ class MainApp extends Component {
           <div className = 'editor-container'>
           <EditorContainer id = 'main-editor'  
             code = {this.state.code}
-            updateCodeinState = {this.updateCodeinState} />
+            updateCodeinState = {this.updateCodeinState}
+            saveCode = {this.saveCodeToDatabase} />
           </div>
           <div className = 'editor-container'>
           <ViewerContainer id = 'view-screen' 

@@ -26,6 +26,7 @@ class EditorContainer extends Component {
           code={this.props.code}
           updateCodeinState={this.props.updateCodeinState}
           runCode={this.runCode}
+          saveCode={this.props.saveCode}
           consoleOutput={this.state.consoleOutput}
         />
       </div>
