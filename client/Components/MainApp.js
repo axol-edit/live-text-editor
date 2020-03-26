@@ -58,7 +58,7 @@ class MainApp extends Component {
   saveCodeToDatabase() {
     // req.body should have doc_text and doc_name
     const data = {
-      docName: 'test', 
+      docName: 'duygu10', 
       docText: this.state.code
     }
     fetch('/save', {
