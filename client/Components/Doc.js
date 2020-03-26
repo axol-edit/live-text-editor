@@ -9,7 +9,7 @@ class Doc extends Component {
     render() {
         return (
             <div>
-                <button >Document</button>
+                <button> Menu item 1 </button>
             </div>
         )
     }

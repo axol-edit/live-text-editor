@@ -10,10 +10,8 @@ class DocsContainer extends Component {
     render() {
         return (
             <div>
-                <DocsDisplay />
-                <Doc />
-                <Doc />
-                <Doc />
+                <DocsDisplay updateCodeFromDocs={this.props.updateCodeFromDocs}/>
+            
             </div>
         )
     }

@@ -4,8 +4,9 @@ const documentController = {}
 
 // check the user's ID and save a new document in the database that has a doc_id that matches the user's _id
 documentController.saveDoc = (req, res, next) => {
-    const { username, docName, docText } = req.body;
-    const queryArr1 = [username,docName, docText];
+    const { docName, docText } = req.body;
+    console.log(docName, docText)
+    const queryArr1 = ['duygu',docName, docText];
     const queryString = "INSERT into documents (doc_name, doc_text, doc_id) VALUES ($2, $3, (SELECT _id FROM users WHERE username = $1))"
     // console.log('DOC CONTROLLER SAVE DOC FIRED')
     db.query(queryString, queryArr1, (err, data) => {
@@ -23,7 +24,8 @@ documentController.saveDoc = (req, res, next) => {
 
 // check the user's username, and return to the client doc_name and doc_text of all their saved documents in the database 
 documentController.retrieveDoc = (req, res, next) => {
-    const { username } = req.body;
+    // const { username } = req.body;
+    const username = 'duygu'
     const selectArr = [username]
     const selectorString = "SELECT documents.doc_name, documents.doc_text, documents._id FROM users INNER JOIN documents ON users._id = documents.doc_id WHERE users.username = $1"
     db.query(selectorString, selectArr, (err, data) => {
