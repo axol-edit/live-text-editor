@@ -28,7 +28,7 @@ io.on('connection', socket => {
 
   // TODO: Handle leave room event when user switches room
 
-  // handle coding event - emits user input code received from client socket to the room received from data sent by client socket
+  // handle coding event - emits 'code sent from server' event and user input code received from client socket to the room received from data sent by client socket
   socket.on('coding', data => {
     console.log(data);
     socket.broadcast.to(data.room).emit('code sent from server', data);
