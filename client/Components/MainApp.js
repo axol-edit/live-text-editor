@@ -23,6 +23,7 @@ class MainApp extends Component {
     });
     this.updateCodeinState = this.updateCodeinState.bind(this);
     this.updateCodeFromSockets = this.updateCodeFromSockets.bind(this);
+    this.updateCodeFromDocs = this.updateCodeFromDocs.bind(this);
   }
 
    // Emits 'room' event, sending this.state.room to the socket in the server when component mounts
@@ -47,12 +48,17 @@ class MainApp extends Component {
     this.setState({ viewerCode: payload.newCode });
   }
 
+  // Update editor code if user selects a document
+  updateCodeFromDocs(docText) {
+    this.setState({code: docText})
+  }
+
 	render(){
   return (
     <div>
       <h1>Main App</h1>
       <div>
-				<DocsContainer />
+				<DocsContainer updateCodeFromDocs={this.updateCodeFromDocs}/>
         <h1>Current Room: {this.state.room}</h1>
         <div className = 'editor'>
           <div className = 'editor-container'>

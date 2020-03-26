@@ -23,7 +23,8 @@ documentController.saveDoc = (req, res, next) => {
 
 // check the user's username, and return to the client doc_name and doc_text of all their saved documents in the database 
 documentController.retrieveDoc = (req, res, next) => {
-    const { username } = req.body;
+    // const { username } = req.body;
+    const username = 'duygu'
     const selectArr = [username]
     const selectorString = "SELECT documents.doc_name, documents.doc_text FROM users INNER JOIN documents ON users._id = documents.doc_id WHERE users.username = $1"
     db.query(selectorString, selectArr, (err, data) => {
